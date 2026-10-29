@@ -1,0 +1,29 @@
+# Nurshat Sagidullaeva - Student API
+
+**Author:** Sagidullaeva Nurshat (Student ID 41536, group IT2-23.09)
+**Description:** Student REST API (Spring Boot, PostgreSQL, Docker).
+
+## Tech stack
+- Java 17, Spring Boot 3, Gradle
+- PostgreSQL 16
+- Docker, Docker Compose
+- Jenkins (CI pipeline)
+
+## Run with Docker Compose
+1. Copy `.env.example` to `.env` and set the database password.
+2. Start everything:
+   ```bash
+   docker compose up -d --build
+   ```
+3. The API is available at http://localhost:8080/api/students
+
+## API endpoints
+Endpoints will be described here.
+
+| Method | URL | Description |
+|--------|-----|-------------|
+| GET | /api/students | list all students |
+| GET | /api/students/{id} | get one student |
+| POST | /api/students | create a student |
+| PUT | /api/students/{id} | update a student |
+| DELETE | /api/students/{id} | delete a student |

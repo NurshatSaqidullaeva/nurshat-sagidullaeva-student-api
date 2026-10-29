@@ -1,0 +1,43 @@
+# Personalized Compose project name
+name: nurshat-sagidullaeva-student-api
+
+services:
+  db:
+    image: postgres:16
+    container_name: nurshat-sagidullaeva-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - nurshat_pgdata:/var/lib/postgresql/data   # persistent named volume
+    networks:
+      - nurshat_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    image: nurshat-sagidullaeva-student-api:v1.0-nurshat-sagidullaeva
+    container_name: nurshat-sagidullaeva-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Host is the service name "db", not localhost
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8080:8080"
+    networks:
+      - nurshat_net
+
+volumes:
+  nurshat_pgdata:
+
+networks:
+  nurshat_net:
