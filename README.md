@@ -1,7 +1,7 @@
 # Nurshat Sagidullaeva - Student API
 
 **Author:** Sagidullaeva Nurshat (Student ID 41536, group IT2-23.09)
-**Description:** Student REST API (Spring Boot, PostgreSQL, Docker).
+**Description:** Fully documented Student REST API - see the API endpoints section below.
 
 ## Tech stack
 - Java 17, Spring Boot 3, Gradle
@@ -18,7 +18,14 @@
 3. The API is available at http://localhost:8080/api/students
 
 ## API endpoints
-Endpoints will be described here.
+All endpoints use JSON. Base URL: `http://localhost:8080/api/students`.
+
+Example - create a student:
+```bash
+curl -X POST http://localhost:8080/api/students \
+  -H "Content-Type: application/json" \
+  -d '{"fullName":"Nurshat Sagidullaeva","email":"nurshat@example.com","groupName":"IT2-23.09"}'
+```
 
 | Method | URL | Description |
 |--------|-----|-------------|
