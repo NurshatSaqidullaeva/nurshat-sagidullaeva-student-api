@@ -1,7 +1,7 @@
 # Nurshat Sagidullaeva - Student API
 
 **Author:** Sagidullaeva Nurshat (Student ID 41536, group IT2-23.09)
-**Description:** Student REST API (Spring Boot, PostgreSQL, Docker).
+**Description:** Student REST API with a validated create endpoint (CRUD improvement by Nurshat Sagidullaeva).
 
 ## Tech stack
 - Java 17, Spring Boot 3, Gradle
@@ -27,3 +27,7 @@ Endpoints will be described here.
 | POST | /api/students | create a student |
 | PUT | /api/students/{id} | update a student |
 | DELETE | /api/students/{id} | delete a student |
+
+## Change log
+- Create endpoint now validates `fullName` (not blank) and `email` (valid format) and returns `201 Created`.
+- Added automated tests for create and for a nonexistent student.
