@@ -1,5 +1,6 @@
 package kz.iitu.studentapi;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,9 +36,10 @@ public class StudentController {
         return repository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
     }
 
-    // CREATE
+    // CREATE (validated, returns 201 Created)
     @PostMapping
-    public Student create(@RequestBody Student student) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student create(@Valid @RequestBody Student student) {
         student.setId(null);
         return repository.save(student);
     }
